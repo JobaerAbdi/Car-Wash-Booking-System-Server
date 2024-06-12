@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req: Request, res: Response) => {
-const result = "Hello !!!"
+const result = "Hello Car Wash Center !!!"
   res.send(result);
 });
 
