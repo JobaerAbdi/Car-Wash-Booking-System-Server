@@ -14,4 +14,8 @@ router.get("/services/:id", ServiceControllars.getServiceByIdDB);
 
 router.get("/services", ServiceControllars.getAllServiceDB);
 
+router.put('/services/:id', ServiceControllars.updateServiceDB);
+
+router.delete('/services/:id', ServiceControllars.deleteServiceDB);
+
 export const ServiceRoute = router;

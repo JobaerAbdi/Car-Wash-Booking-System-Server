@@ -38,8 +38,39 @@ const getAllServiceDB = catchAsync(async (req, res) => {
   });
 });
 
+//update services
+const updateServiceDB = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new AppError(httpStatus.NOT_FOUND, "Service ID not found");
+  }
+  const updateData = req.body;
+  const result = await ServiceServices.updateService(id, updateData);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "Service deleted successfully",
+    data: result,
+  });
+});
+
+//delete service
+const deleteServiceDB = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new AppError(httpStatus.NOT_FOUND, "Service ID not found");
+  }
+  const result = await ServiceServices.deleteService(id);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "Service deleted successfully",
+    data: result,
+  });
+});
+
 export const ServiceControllars = {
   createServiceDb,
   getServiceByIdDB,
-  getAllServiceDB
+  getAllServiceDB,
+  updateServiceDB,
+  deleteServiceDB,
 };

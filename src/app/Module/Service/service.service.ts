@@ -14,7 +14,19 @@ const getServiceById = async (id: string) => {
 
 //get all service
 const getAllService = async() =>{
-  const result = await Service.find();
+  const result = await Service.find({ isDeleted: false }).exec();
+  return result
+};
+
+//update service
+ const updateService = async (id: string, updateData: Partial<CService>) => {
+  const result = await Service.findByIdAndUpdate(id, updateData, {new:true, runValidators: true}).exec();
+  return result;
+};
+
+//delete service
+const deleteService = async (id: string): Promise<CService | null> => {
+   const result = await Service.findByIdAndUpdate(id,{isDeleted:true}, {new:true}).exec();
   return result
 };
 
@@ -22,5 +34,7 @@ const getAllService = async() =>{
 export const ServiceServices = {
   createService,
   getServiceById,
-  getAllService
+  getAllService,
+  updateService,
+  deleteService
 };
