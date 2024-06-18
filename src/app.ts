@@ -16,7 +16,8 @@ app.use("/api/v1" , router);
 
 app.get("/", (req: Request, res: Response) => {
 const result = "Hello Car Wash Center !!!"
-  res.send(result);
+res.send(result);
+console.log('MongoDB connected...')
 });
 
 
