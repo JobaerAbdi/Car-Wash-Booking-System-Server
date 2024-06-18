@@ -2,8 +2,6 @@ import { Schema, model } from "mongoose";
 import { CUser } from "./user.interface";
 
 
-
-
 export const CUserSchema: Schema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
