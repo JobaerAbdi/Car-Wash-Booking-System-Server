@@ -2,9 +2,8 @@ import { CUser } from "./user.interface";
 import { User } from "./user.model";
 
 const createUser = async (userData: CUser) => {
-  const user = await User.create(userData);
-  await user.save();
-  return user;
+  const result = await User.create(userData);
+  return result;
 };
 
 export const UserServices = {
