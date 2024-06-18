@@ -7,7 +7,7 @@ import { ServiceServices } from "./service.service";
 const createServiceDb = catchAsync(async (req, res) => {
   const movieData = req.body;
   const result = await ServiceServices.createService(movieData);
-  res.json({
+  res.status(httpStatus.OK).json({
     success: true,
     message: "Service created successfully",
     data: result,
@@ -16,12 +16,12 @@ const createServiceDb = catchAsync(async (req, res) => {
 
 //getBId Service
 const getServiceByIdDB = catchAsync(async (req, res) => {
-  const { serviceId } = req.params;
-  if (!serviceId) {
+  const { id } = req.params;
+  if (!id) {
     throw new AppError(httpStatus.NOT_FOUND, "Service ID not found");
   }
-  const result = await ServiceServices.getServiceById(serviceId);
-  res.json({
+  const result = await ServiceServices.getServiceById(id);
+  res.status(httpStatus.OK).json({
     success: true,
     message: "Service retrieved successfully",
     data: result,
@@ -31,7 +31,7 @@ const getServiceByIdDB = catchAsync(async (req, res) => {
 //get all
 const getAllServiceDB = catchAsync(async (req, res) => {
   const result = await ServiceServices.getAllService();
-  res.status(200).json({
+  res.status(httpStatus.OK).json({
     success: true,
     message: "Services retrieved successfully",
     data: result,
