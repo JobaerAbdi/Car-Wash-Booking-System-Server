@@ -12,12 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //application routes
-app.use("/api/v1" , router);
+app.use("/api" , router);
 
 app.get("/", (req: Request, res: Response) => {
 const result = "Hello Car Wash Center !!!"
 res.send(result);
-console.log('MongoDB connected...')
 });
 
 
