@@ -1,15 +1,17 @@
+import httpStatus from "http-status";
+import catchAsync from "../../utils/catchAsync";
 import { UserServices } from "./user.service";
 
+const createUserDB = catchAsync(async (req, res) => {
+  const userData = req.body;
+  const result = await UserServices.createUser(userData);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "Admin is created successfully!",
+    data: result,
+  });
+});
 
-
-
-export const register = async (req: Request, res: Response) => {
-  const { name, email, password, phone, role, address } = req.body;
-
-  try {
-    const user = await UserServices.createUser({ name, email, password, phone, role, address });
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(500).send('Server error');
-  }
+export const UserControllars = {
+  createUserDB,
 };
