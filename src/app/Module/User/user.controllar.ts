@@ -7,7 +7,7 @@ const createUserDB = catchAsync(async (req, res) => {
   const result = await UserServices.createUser(userData);
   res.status(httpStatus.OK).json({
     success: true,
-    message: "Admin is created successfully!",
+    message: "User registered successfully!",
     data: result,
   });
 });
