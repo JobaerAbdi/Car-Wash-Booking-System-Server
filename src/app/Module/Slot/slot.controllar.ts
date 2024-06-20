@@ -11,7 +11,7 @@ export const createSlotsHandler = async (req: Request, res: Response) => {
       if (!serviceData) {
         return res.status(404).json({ success: false, message: 'Service not found' });
       }
-  
+      
       const duration = serviceData.duration;
       const slots = calculateTimeSlots(startTime, endTime, duration).map(slot => ({ ...slot, service, date, isBooked: 'available' }));
   
