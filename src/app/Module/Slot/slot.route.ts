@@ -4,6 +4,6 @@ import validationRequest from "../../middlewares/validaedRequest";
 import { SlotValidation } from "./slot.validation";
 const router = express.Router();
 
-router.post("/slots", validationRequest(SlotValidation.SlotValidationSchema),SlotControllars.createSlotsHandler);
+router.post("/slots", validationRequest(SlotValidation.SlotValidationSchema),SlotControllars.createSlotsDB);
 
 export const SlotRoutes = router;

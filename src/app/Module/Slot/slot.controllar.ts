@@ -1,26 +1,19 @@
-import { Request, Response } from "express";
 import { SlotService } from "./slost.service";
 import catchAsync from "../../utils/catchAsync";
+import httpStatus from "http-status";
 
-export const createSlotsHandler = catchAsync(
-  async (req: Request, res: Response) => {
-    const { service, date, startTime, endTime } = req.body;
+export const createSlotsDB = catchAsync(async (req, res) => {
+  const { service, date, startTime, endTime } = req.body;
 
-    const createdSlots = await SlotService.createSlot(
-      service,
-      date,
-      startTime,
-      endTime
-    );
-    res.status(201).json({
-      success: true,
-      statusCode: 200,
-      message: "Slots created successfully",
-      data: createdSlots,
-    });
-  }
-);
+  const result = await SlotService.createSlot( service, date, startTime, endTime);
+  res.status(httpStatus.OK).json({
+    success: true,
+    statusCode: 200,
+    message: "Slots created successfully",
+    data: result,
+  });
+});
 
 export const SlotControllars = {
-  createSlotsHandler,
+  createSlotsDB,
 };

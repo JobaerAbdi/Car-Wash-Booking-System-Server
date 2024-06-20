@@ -3,8 +3,8 @@ import { Service } from "../Service/service.model";
 import { Slot } from "./slot.model";
 
 
-
 const createSlot = async (serviceId: string, date: string, startTime: string, endTime: string) => {
+  
   const serviceData = await Service.findById(serviceId);
   if (!serviceData) {
     throw new Error('Service not found');

@@ -1,9 +1,5 @@
+import { TimeSlot } from "../Interface/Time";
 
-
-interface TimeSlot {
-  startTime: string;
-  endTime: string;
-}
 
 export const calculateTimeSlots = (startTime: string, endTime: string, duration: number): TimeSlot[] => {
   const slots: TimeSlot[] = [];
