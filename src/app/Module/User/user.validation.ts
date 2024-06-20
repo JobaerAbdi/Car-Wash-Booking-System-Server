@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { USER_Role } from "./user.consatand";
 
 export const createUserValidationSchema = z.object({
   body:z.object({
@@ -6,7 +7,7 @@ export const createUserValidationSchema = z.object({
     email: z.string().email({ message: "Email is invalid" }),
     password: z.string(),
     phone: z.string(),
-    role: z.enum(["admin", "user"]),
+    role: z.nativeEnum(USER_Role).optional(),
     address: z.string(),
   })
 });
