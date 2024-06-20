@@ -12,11 +12,11 @@ const moduleRoutes = [
     route: UserRoutes,
   },
   {
-    path: "/services",
+    path: "",
     route : ServiceRoute
   },
   {
-    path: "/services",
+    path: "",
     route: SlotRoutes
   }
 ];
