@@ -3,6 +3,8 @@ import { Service } from "../Service/service.model";
 import { Slot } from "../Slot/slot.model";
 import { CBooking } from "./booking.interface";
 import { Booking } from "./booking.model";
+import AppError from "../../Error/AppError";
+import httpStatus from "http-status";
 
 const createBooking = async (bookingData: CBooking) => {
   const {
@@ -18,17 +20,18 @@ const createBooking = async (bookingData: CBooking) => {
 
   const session = await mongoose.startSession();
   session.startTransaction();
+
   try {
     // Verify service existence
     const service = await Service.findById(serviceId).session(session);
     if (!service) {
-      throw new Error("Service not found");
+      throw new AppError(httpStatus.NOT_FOUND, "Service not found !");
     }
 
     // Verify slot availability
     const slot = await Slot.findById(slotId).session(session);
     if (!slot || slot.isBooked !== "available") {
-      throw new Error("Slot not available");
+      throw new AppError(httpStatus.BAD_REQUEST, "Slot not available !");
     }
 
     // Create booking
