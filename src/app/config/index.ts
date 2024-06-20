@@ -12,4 +12,7 @@ export default {
   
   jwt_access_secret: process.env.JWT_ACCESS_TOKEN,
   jwt_assess_exrpired: process.env.JWT_ACCESS_EXPIRES_IN,
+  
+  jwt_refreshtoken: process.env.JWT_REFRESH_TOKEN,
+  jwt_refresh_exrpired: process.env.JWT_REFRESH_EXPIRES_IN,
 };
