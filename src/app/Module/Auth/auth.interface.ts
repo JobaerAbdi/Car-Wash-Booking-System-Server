@@ -1,5 +1,5 @@
 export type CLoginUser = {
-    id: string;
+  email: string;
     password: string;
   };
   

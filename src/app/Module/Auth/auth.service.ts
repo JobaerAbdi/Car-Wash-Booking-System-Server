@@ -3,10 +3,12 @@ import AppError from "../../Error/AppError";
 import { User } from "../User/user.model";
 import { CLoginUser } from "./auth.interface";
 import config from "../../config";
+import { isPasswordMatched } from "./auth.utils";
 
 
 const loginUser = async (payload: CLoginUser) => {
-    const isExistsUser = await User.isUserExsitsByCustomId(payload.id);
+  const user = await User.findOne({ email: payload.email }).select("+password");
+  console.log(user)
     if (!isExistsUser) {
       throw new AppError(httpStatus.NOT_FOUND, "This user is Not Found !!");
     }
@@ -21,13 +23,15 @@ const loginUser = async (payload: CLoginUser) => {
     }
   
     // Verify password
-    const isPasswordValid = await User.isPasswordMaths(
+    const passwordMatch = await isPasswordMatched(
       payload.password,
-      isExistsUser.password
+      user.password
     );
-    if (!isPasswordValid) {
-      throw new AppError(httpStatus.UNAUTHORIZED, "Invalid password");
+  
+    if (!passwordMatch) {
+      throw new Error("Password not matched");
     }
+  
   
     // Create token and send to the user
     const jwrPayload = {
