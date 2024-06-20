@@ -8,3 +8,6 @@ export interface CUser {
   role:keyof typeof USER_Role;
   address: string;
 }
+
+
+export type CUserRole = keyof typeof USER_Role;

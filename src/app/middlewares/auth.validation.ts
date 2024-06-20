@@ -1,33 +1,50 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import config from "../config";
+import { JwtPayload } from "../Interface/Jwt";
+import catchAsync from "../utils/catchAsync";
+import httpStatus from "http-status";
+import AppError from "../Error/AppError";
+import { CUserRole } from "../Module/User/user.interface";
 
 
-interface JwtPayload {
-    role: string;
-  }
-  
-  export const authenticate = (req: Request, res: Response, next: NextFunction) => {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ success: false, message: 'You are Unauthorized Access!' });
+export const AuthValidated = (...requierdRole: CUserRole[]) => {
+  return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const token = req.headers.authorization;
+    if (!token) {
+      throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized!");
     }
-  
-    const token = authHeader.split(' ')[1];
 
-    try {
-      const decoded = jwt.verify(token, config.jwtSecret) as JwtPayload;
-      req.user = decoded;
-      next();
-    } catch (error) {
-      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    console.log(token)
+    const decoded = jwt.verify(token.split(' ')[1], config.jwt_access_secret as string) as JwtPayload;
+    const { role, userId, iat } = decoded;
+
+    const isExistsUser = await User.isUserExsitsByCustomId(userId);
+    if (!isExistsUser) {
+      throw new AppError(httpStatus.NOT_FOUND, "This user is not found!");
     }
-  };
-  
-  export const authorizeAdmin = (req: Request, res: Response, next: NextFunction) => {
-    if (req.user?.role !== 'admin') {
-      return res.status(403).json({ success: false, message: 'Forbidden' });
+
+    // Check user status
+    if (isExistsUser.isDeleted) {
+      throw new AppError(httpStatus.FORBIDDEN, "This user is deleted!");
     }
+
+    if (isExistsUser.status === "blocked") {
+      throw new AppError(httpStatus.FORBIDDEN, "This user is blocked!");
+    }
+
+    if (
+      isExistsUser.passwordChangeAt &&
+      User.isJWTIssuseBeforePasswoedChange(isExistsUser.passwordChangeAt, iat as number)
+    ) {
+      throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized!");
+    }
+
+    if (requierdRole && !requierdRole.includes(role)) {
+      throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized!");
+    }
+
+    req.user = decoded as JwtPayload;
     next();
-  };
+  });
+};

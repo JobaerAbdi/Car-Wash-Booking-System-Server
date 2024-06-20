@@ -2,11 +2,14 @@ import express from "express";
 import { ServiceControllars } from "./service.controllar";
 import validationRequest from "../../middlewares/validaedRequest";
 import { ServiceValidation } from "./service.validation";
+import { AuthValidated } from "../../middlewares/auth.validation";
+import { USER_Role } from "../User/user.consatand";
 
 const router = express.Router();
 
 router.post(
   "/services",
+  AuthValidated(USER_Role.ADMIN),
   validationRequest(ServiceValidation.createServiceValidationSchema),
   ServiceControllars.createServiceDb
 );
