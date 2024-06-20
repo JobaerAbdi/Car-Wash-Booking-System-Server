@@ -35,7 +35,7 @@ const loginUser = async (payload: CLoginUser) => {
   
   
     // const needsPasswordChange = isExistsUser?.needsPasswordChange;
-    return { accessToken, refreshToken, needsPasswordChange };
+    return { accessToken, refreshToken };
   };
   
 
