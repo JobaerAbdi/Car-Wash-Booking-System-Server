@@ -15,7 +15,7 @@ export const AuthValidated = (...requierdRole: CUserRole[]) => {
       throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized!");
     }
     const decoded = jwt.verify(token.split(' ')[1], config.jwt_access_secret as string) as JwtPayload;
-    const { userId, role, iat } = decoded;
+    const { userId } = decoded;
 
     const isExistsUser = await User.findById(userId);
     console.log(isExistsUser)

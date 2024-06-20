@@ -17,8 +17,8 @@ router.get("/services/:id", ServiceControllars.getServiceByIdDB);
 
 router.get("/services/", ServiceControllars.getAllServiceDB);
 
-router.put("/services/:id", ServiceControllars.updateServiceDB);
+router.put("/services/:id",  AuthValidated(USER_Role.ADMIN), ServiceControllars.updateServiceDB);
 
-router.delete("/services/:id", ServiceControllars.deleteServiceDB);
+router.delete("/services/:id",   AuthValidated(USER_Role.ADMIN), ServiceControllars.deleteServiceDB);
 
 export const ServiceRoute = router;
