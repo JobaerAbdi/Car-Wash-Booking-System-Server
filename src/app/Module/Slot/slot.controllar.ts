@@ -20,11 +20,10 @@ const createSlotsDB = catchAsync(async (req, res) => {
 });
 
 const getAvailableSlotsDB = catchAsync(async (req, res) => {
-  // const { data, serviceId } = req.query;
-  // if (!data || !serviceId) {
-  //   throw new AppError(httpStatus.NOT_FOUND, "Not Fount data or serviceId !");
-  // }
-  const result = await SlotService.getAvailableSlots();
+  const { data, serviceId } = req.query;
+
+
+  const result = await SlotService.getAvailableSlots(data as string, serviceId as string);
   res.status(httpStatus.OK).json({
     success: true,
     statusCode: 200,

@@ -19,8 +19,19 @@ const createSlot = async (serviceId: string, date: string, startTime: string, en
   return result;
 };
 
-const getAvailableSlots = async () => {
-  const slots = await Slot.find();
+const getAvailableSlots = async (date?: string, serviceId?: string) => {
+  const query: any = {};
+
+  if (date) {
+    query.date = date;
+  }
+
+  if (serviceId) {
+    query.service = serviceId;
+  }
+
+  query.isBooked = 'available';
+  const slots = await Slot.find().populate('service');
   return slots;
 };
 
