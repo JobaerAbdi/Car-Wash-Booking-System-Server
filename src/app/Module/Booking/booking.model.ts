@@ -3,9 +3,9 @@ import { CBooking, CVehicleType } from "./booking.interface";
 
 export const CBookingSchema = new Schema<CBooking>(
   {
-    customerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    serviceId: { type: Schema.Types.ObjectId, ref: "Service", required: true },
-    slotId: { type: Schema.Types.ObjectId, ref: "Slot", required: true },
+    customerId: { type: Schema.Types.ObjectId, ref: "User",  },
+    serviceId: { type: Schema.Types.ObjectId, ref: "Service",  },
+    slotId: { type: Schema.Types.ObjectId, ref: "Slot",  },
     vehicleType: {
       type: String,
       enum: Object.values(CVehicleType),

@@ -3,27 +3,12 @@ import catchAsync from "../../utils/catchAsync";
 import { BookingServices } from "./booking.service";
 
 const createBookingDB = catchAsync(async (req, res) => {
-    console.log(req.user);
-  const customerId = req.user._id;
-  const {
-    serviceId,
-    slotId,
-    vehicleType,
-    vehicleBrand,
-    vehicleModel,
-    manufacturingYear,
-    registrationPlate,
-  } = req.body;
-  const result = await BookingServices.createBooking({
-    serviceId,
-    slotId,
-    customerId,
-    vehicleType,
-    vehicleBrand,
-    vehicleModel,
-    manufacturingYear,
-    registrationPlate,
-  });
+  const bookingData = {
+    ...req.body,
+    customer: req.user.userId,
+  };
+
+  const result = await BookingServices.createBooking(bookingData);
   res.status(httpStatus.OK).json({
     success: true,
     statusCode: 200,
@@ -32,8 +17,6 @@ const createBookingDB = catchAsync(async (req, res) => {
   });
 });
 
-
 export const BookingControllars = {
-    createBookingDB
+  createBookingDB,
 };
-

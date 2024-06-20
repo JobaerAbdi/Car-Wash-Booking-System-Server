@@ -18,7 +18,7 @@ export const AuthValidated = (...requierdRole: CUserRole[]) => {
     const { userId } = decoded;
 
     const isExistsUser = await User.findById(userId);
-    console.log(isExistsUser)
+
 
     if (!isExistsUser) {
       throw new AppError(httpStatus.NOT_FOUND, "This user is not found!");
