@@ -70,10 +70,11 @@ const getallBooing = async () => {
 };
 
 const getUserBookings = async (userId: string) => {
-  const bookings = await Booking.find({ customer: userId }).select("-customer")
+  const bookings = await Booking.find({ customer: userId })
+    .select("-customer")
     .populate("service")
     .populate("slot");
-console.log(bookings)
+  console.log(bookings);
   if (!bookings) {
     throw new AppError(httpStatus.NOT_FOUND, "No bookings found for this user");
   }
