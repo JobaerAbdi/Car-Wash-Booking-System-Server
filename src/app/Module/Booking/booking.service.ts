@@ -1,11 +1,9 @@
-
 import { Service } from "../Service/service.model";
 import { Slot } from "../Slot/slot.model";
 import { Booking } from "./booking.model";
 import AppError from "../../Error/AppError";
 import httpStatus from "http-status";
 import { User } from "../User/user.model";
-
 
 const createBooking = async (bookingData: any) => {
   const {
@@ -20,8 +18,8 @@ const createBooking = async (bookingData: any) => {
   } = bookingData;
 
   const customer = await User.findById(customerId);
-  if(!customer){
-    throw new AppError(httpStatus.NOT_FOUND, "User Is Found")
+  if (!customer) {
+    throw new AppError(httpStatus.NOT_FOUND, "User Is Found");
   }
 
   // Verify service existence
@@ -55,14 +53,23 @@ const createBooking = async (bookingData: any) => {
   await slot.save();
 
   // Populate booking with relevant data
-  await savedBooking.populate('customer');
-  await savedBooking.populate('service');
-  await savedBooking.populate('slot');
+  await savedBooking.populate("customer");
+  await savedBooking.populate("service");
+  await savedBooking.populate("slot");
 
   return savedBooking;
 };
 
+//get all Booking
+const getallBooing = async () => {
+  const result = await Booking.find()
+    .populate("customer")
+    .populate("service")
+    .populate("slot");
+  return result;
+};
 
 export const BookingServices = {
   createBooking,
+  getallBooing,
 };

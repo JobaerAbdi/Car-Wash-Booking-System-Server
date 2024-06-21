@@ -1,19 +1,31 @@
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import { BookingServices } from "./booking.service";
+import sendResponse from "../../utils/sendResponse";
 
 const createBookingDB = catchAsync(async (req, res) => {
   const bookingData = req.body;
   bookingData.customerId = req.user?.userId;
   const result = await BookingServices.createBooking(bookingData);
-  res.status(httpStatus.OK).json({
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
     success: true,
-    statusCode: 200,
     message: "Booking successful",
+    data: result,
+  });
+});
+
+const getallBooingDB = catchAsync(async (req, res) => {
+  const result = await BookingServices.getallBooing();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "All bookings retrieved successfully",
     data: result,
   });
 });
 
 export const BookingControllars = {
   createBookingDB,
+  getallBooingDB,
 };

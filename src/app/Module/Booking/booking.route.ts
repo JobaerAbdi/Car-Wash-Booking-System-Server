@@ -9,6 +9,8 @@ import { USER_Role } from '../User/user.consatand';
 const router = Router();
 
 
-router.post('/bookings',  AuthValidated(USER_Role.ADMIN), validationRequest(BookingValidation.createBookingValidationSchema),BookingControllars.createBookingDB);
+router.post('/bookings',  AuthValidated(USER_Role.USER), validationRequest(BookingValidation.createBookingValidationSchema),BookingControllars.createBookingDB);
+
+router.get('/bookings',AuthValidated(USER_Role.ADMIN) ,BookingControllars.getallBooingDB);
 
 export const BookingRoutes = router;
