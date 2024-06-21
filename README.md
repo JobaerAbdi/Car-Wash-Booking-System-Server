@@ -1,4 +1,4 @@
-🎉 **Welcome to Car Wash Center..!!**
+## 🎉 **Welcome to Car Wash Center..!!**
 
 A web application for booking car wash services. This system allows users to book slots for various car wash services and manage bookings.
 
