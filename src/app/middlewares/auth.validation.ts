@@ -27,7 +27,7 @@ export const AuthValidated = (...requierdRole: CUserRole[]) => {
     if (!(requierdRole[0] === isExistsUser.role)) {
       throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized!");
     }
-
+    //decoded
     req.user = decoded as JwtPayload;
     next();
   });

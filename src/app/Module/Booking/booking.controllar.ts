@@ -26,7 +26,7 @@ const getallBooingDB = catchAsync(async (req, res) => {
 });
 
 
-const userBookingDB = catchAsync(async(req, res)=>{
+const userBookingDB = catchAsync(async(req , res)=>{
   const userData = req.user.userId;
   const result = await BookingServices.getUserBookings(userData);
   sendResponse(res, {
