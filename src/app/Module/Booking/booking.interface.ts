@@ -15,9 +15,9 @@ export enum CVehicleType {
   }
   
   export interface CBooking {
-    customerId: mongoose.Types.ObjectId;
-    serviceId: mongoose.Types.ObjectId;
-    slotId: mongoose.Types.ObjectId;
+    customer: mongoose.Types.ObjectId;
+    service: mongoose.Types.ObjectId;
+    slot: mongoose.Types.ObjectId;
     vehicleType: CVehicleType;
     vehicleBrand: string;
     vehicleModel: string;

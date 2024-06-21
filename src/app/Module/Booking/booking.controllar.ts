@@ -3,11 +3,8 @@ import catchAsync from "../../utils/catchAsync";
 import { BookingServices } from "./booking.service";
 
 const createBookingDB = catchAsync(async (req, res) => {
-  const bookingData = {
-    ...req.body,
-    customer: req.user.userId,
-  };
-
+  const bookingData = req.body;
+  bookingData.customerId = req.user?.userId;
   const result = await BookingServices.createBooking(bookingData);
   res.status(httpStatus.OK).json({
     success: true,

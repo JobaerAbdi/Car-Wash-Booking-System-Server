@@ -19,6 +19,8 @@ const createSlot = async (serviceId: string, date: string, startTime: string, en
   return result;
 };
 
+
+//
 const getAvailableSlots = async (date?: string, serviceId?: string) => {
   const query: any = {};
 
