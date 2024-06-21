@@ -4,50 +4,50 @@ A web application for booking car wash services. This system allows users to boo
 
 ## Folder structure
 
-src/
-├── app/
-├── config/
-│   └── index.ts
-├── middlewares/
-│   └── errorHandler.ts
-│   └── auth.ts
-├── Error/
-│   └── AppError.ts
-├── Module/
-│   ├── User/
-│   │   └── user.interface.ts
-│   │   └── user.model.ts
-│   │   └── user.service.ts
-│   │   └── user.controller.ts
-│   │   └── user.validation.ts
-│   │   └── user.route.ts
-│   ├── Service/
-│   │   └── service.interface.ts
-│   │   └── service.model.ts
-│   │   └── service.service.ts
-│   │   └── service.controller.ts
-│   │   └── service.validation.ts
-│   │   └── service.route.ts
-│   ├── Slot/
-│   │   └── slot.interface.ts
-│   │   └── slot.model.ts
-│   │   └── slot.service.ts
-│   │   └── slot.controller.ts
-│   │   └── slot.validation.ts
-│   │   └── slot.route.ts
-│   ├── Booking/
-│   │   └── booking.interface.ts
-│   │   └── booking.model.ts
-│   │   └── booking.service.ts
-│   │   └── booking.controller.ts
-│   │   └── booking.validation.ts
-│   │   └── booking.route.ts
-├── routes/
-│   └── index.ts
-├── utils/
-└── connectDB.ts
-app.ts
-server.ts
+- src/ 
+- ├── app/
+- ├── config/
+- │   └── index.ts
+- ├── middlewares/
+- │   └── errorHandler.ts
+- │   └── auth.ts
+- ├── Error/
+- │   └── AppError.ts
+- ├── Module/
+- │   ├── User/
+- │   │   └── user.interface.ts
+- │   │   └── user.model.ts
+- │   │   └── user.service.ts
+- │   │   └── user.controller.ts
+- │   │   └── user.validation.ts
+- │   │   └── user.route.ts
+- │   ├── Service/
+- │   │   └── service.interface.ts
+- │   │   └── service.model.ts
+- │   │   └── service.service.ts
+- │   │   └── service.controller.ts
+- │   │   └── service.validation.ts
+- │   │   └── service.route.ts
+- │   ├── Slot/
+- │   │   └── slot.interface.ts
+- │   │   └── slot.model.ts
+- │   │   └── slot.service.ts
+- │   │   └── slot.controller.ts
+- │   │   └── slot.validation.ts
+- │   │   └── slot.route.ts
+- │   ├── Booking/
+- │   │   └── booking.interface.ts
+- │   │   └── booking.model.ts
+- │   │   └── booking.service.ts
+- │   │   └── booking.controller.ts
+- │   │   └── booking.validation.ts
+- │   │   └── booking.route.ts
+- ├── routes/
+- │   └── index.ts
+- ├── utils/
+- └── connectDB.ts
+- app.ts
+- server.ts
 
 
 ## Features
