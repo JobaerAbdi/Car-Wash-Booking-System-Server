@@ -13,6 +13,6 @@ router.post('/bookings',  AuthValidated(USER_Role.USER), validationRequest(Booki
 
 router.get('/bookings',AuthValidated(USER_Role.ADMIN) ,BookingControllars.getallBooingDB);
 
-router.get('/my-bookings', AuthValidated(USER_Role.USER), BookingControllars.userBookingDB)
+router.get('/my-bookings', AuthValidated(USER_Role.USER), BookingControllars.userBookingDB);
 
 export const BookingRoutes = router;

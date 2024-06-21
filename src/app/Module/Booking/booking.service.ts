@@ -69,22 +69,20 @@ const getallBooing = async () => {
   return result;
 };
 
-
 const getUserBookings = async (userId: string) => {
-  const bookings = await Booking.find({ customer: userId })
-    .populate('service')
-    .populate('slot');
-
+  const bookings = await Booking.find({ customer: userId }).select("-customer")
+    .populate("service")
+    .populate("slot");
+console.log(bookings)
   if (!bookings) {
-    throw new AppError(httpStatus.NOT_FOUND, 'No bookings found for this user');
+    throw new AppError(httpStatus.NOT_FOUND, "No bookings found for this user");
   }
 
   return bookings;
 };
 
-
 export const BookingServices = {
   createBooking,
   getallBooing,
-  getUserBookings
+  getUserBookings,
 };
