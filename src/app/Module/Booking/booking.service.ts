@@ -69,7 +69,22 @@ const getallBooing = async () => {
   return result;
 };
 
+
+const getUserBookings = async (userId: string) => {
+  const bookings = await Booking.find({ customer: userId })
+    .populate('service')
+    .populate('slot');
+
+  if (!bookings) {
+    throw new AppError(httpStatus.NOT_FOUND, 'No bookings found for this user');
+  }
+
+  return bookings;
+};
+
+
 export const BookingServices = {
   createBooking,
   getallBooing,
+  getUserBookings
 };
