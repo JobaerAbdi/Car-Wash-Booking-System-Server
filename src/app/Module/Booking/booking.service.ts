@@ -28,6 +28,11 @@ const createBooking = async (bookingData: any) => {
     throw new AppError(httpStatus.NOT_FOUND, "Service not found!");
   }
 
+  
+  if (service.isDeleted) {
+    throw new AppError(httpStatus.BAD_REQUEST, "Service is deleted. Booking cannot be made.");
+  }
+
   // Verify slot availability
   const slot = await Slot.findById(slotId);
   if (!slot || slot.isBooked !== "available") {
