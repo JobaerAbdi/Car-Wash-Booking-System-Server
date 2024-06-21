@@ -21,7 +21,7 @@ export const AuthValidated = (...requierdRole: CUserRole[]) => {
 
 
     if (!isExistsUser) {
-      throw new AppError(httpStatus.NOT_FOUND, "This user is not found!");
+      throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized!");
     }
   
     if (!(requierdRole[0] === isExistsUser.role)) {

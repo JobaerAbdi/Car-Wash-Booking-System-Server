@@ -2,16 +2,18 @@ import httpStatus from "http-status";
 import AppError from "../../Error/AppError";
 import catchAsync from "../../utils/catchAsync";
 import { ServiceServices } from "./service.service";
+import sendResponse from "../../utils/sendResponse";
 
 //create service
 const createServiceDb = catchAsync(async (req, res) => {
   const movieData = req.body;
   const result = await ServiceServices.createService(movieData);
-  res.status(httpStatus.OK).json({
-    success: true,
-    message: "Service created successfully",
-    data: result,
-  });
+ sendResponse(res,{
+  statusCode:httpStatus.OK,
+  success:true,
+  message: "Service created successfully",
+  data:result
+ })
 });
 
 //getBId Service
@@ -21,21 +23,23 @@ const getServiceByIdDB = catchAsync(async (req, res) => {
     throw new AppError(httpStatus.NOT_FOUND, "Service ID not found");
   }
   const result = await ServiceServices.getServiceById(id);
-  res.status(httpStatus.OK).json({
-    success: true,
+  sendResponse(res,{
+    statusCode:httpStatus.OK,
+    success:true,
     message: "Service retrieved successfully",
-    data: result,
-  });
+    data:result
+   })
 });
 
 //get all
 const getAllServiceDB = catchAsync(async (req, res) => {
   const result = await ServiceServices.getAllService();
-  res.status(httpStatus.OK).json({
-    success: true,
-    message: "Services retrieved successfully",
-    data: result,
-  });
+  sendResponse(res,{
+    statusCode:httpStatus.OK,
+    success:true,
+    message: "Service retrieved successfully",
+    data:result
+   })
 });
 
 //update services
@@ -46,11 +50,12 @@ const updateServiceDB = catchAsync(async (req, res) => {
   }
   const updateData = req.body;
   const result = await ServiceServices.updateService(id, updateData);
-  res.status(httpStatus.OK).json({
-    success: true,
-    message: "Service deleted successfully",
-    data: result,
-  });
+  sendResponse(res,{
+    statusCode:httpStatus.OK,
+    success:true,
+    message: "Service updated successfully",
+    data:result
+   })
 });
 
 //delete service
@@ -60,11 +65,12 @@ const deleteServiceDB = catchAsync(async (req, res) => {
     throw new AppError(httpStatus.NOT_FOUND, "Service ID not found");
   }
   const result = await ServiceServices.deleteService(id);
-  res.status(httpStatus.OK).json({
-    success: true,
+  sendResponse(res,{
+    statusCode:httpStatus.OK,
+    success:true,
     message: "Service deleted successfully",
-    data: result,
-  });
+    data:result
+   })
 });
 
 export const ServiceControllars = {
