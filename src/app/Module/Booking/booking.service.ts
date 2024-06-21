@@ -50,6 +50,9 @@ const createBooking = async (bookingData: any) => {
 
   // Populate booking with relevant data
   await savedBooking.populate('customer');
+  await savedBooking.populate('service');
+  await savedBooking.populate('slot');
+
 
   return savedBooking;
 };
