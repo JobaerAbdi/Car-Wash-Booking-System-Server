@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post(
   "/services",
-  AuthValidated(USER_Role.ADMIN),
+  AuthValidated(USER_Role.admin),
   validationRequest(ServiceValidation.createServiceValidationSchema),
   ServiceControllars.createServiceDb
 );
@@ -17,8 +17,8 @@ router.get("/services/:id", ServiceControllars.getServiceByIdDB);
 
 router.get("/services/", ServiceControllars.getAllServiceDB);
 
-router.put("/services/:id",  AuthValidated(USER_Role.ADMIN), ServiceControllars.updateServiceDB);
+router.put("/services/:id",  AuthValidated(USER_Role.admin), ServiceControllars.updateServiceDB);
 
-router.delete("/services/:id",   AuthValidated(USER_Role.ADMIN), ServiceControllars.deleteServiceDB);
+router.delete("/services/:id",   AuthValidated(USER_Role.admin), ServiceControllars.deleteServiceDB);
 
 export const ServiceRoute = router;

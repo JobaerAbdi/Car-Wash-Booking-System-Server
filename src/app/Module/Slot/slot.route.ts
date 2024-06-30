@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post(
   "/services/slots",
-  AuthValidated(USER_Role.ADMIN),
+  AuthValidated(USER_Role.admin),
   validationRequest(SlotValidation.SlotValidationSchema),
   SlotControllars.createSlotsDB
 );
