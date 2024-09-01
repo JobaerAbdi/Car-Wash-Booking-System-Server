@@ -4,11 +4,13 @@ import express, { Application, Request, Response } from "express";
 import router from "./app/routes";
 import GlobalErrorHandel from "./app/middlewares/globalErrorHandel";
 import notFound from "./app/middlewares/notFound";
+import cookieParser from"cookie-parser";
 
 const app: Application = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
