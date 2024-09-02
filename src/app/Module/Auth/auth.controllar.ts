@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 import config from "../../config";
 import catchAsync from "../../utils/catchAsync";
 import { AuthServices } from "./auth.service";
+// import sendResponse from "../../utils/sendResponse";
 
 const loginUserDB = catchAsync(async (req, res) => {
   const result = await AuthServices.loginUser(req.body);
@@ -20,6 +21,22 @@ const loginUserDB = catchAsync(async (req, res) => {
   });
 });
 
+//refreshToken
+// const refreshTokenDB = catchAsync(async (req, res) => {
+//   const { refreshToken } = req.cookies;
+//   console.log("This is token",refreshToken)
+//   const result = await AuthServices.refreshToken(refreshToken);
+
+//   sendResponse(res, {
+//     statusCode: httpStatus.OK,
+//     success: true,
+//     message: "Access token is retrieved succesfully!",
+//     data: result,
+//   });
+// });
+
+
 export const AuthControllers = {
   loginUserDB,
+  // refreshTokenDB
 };

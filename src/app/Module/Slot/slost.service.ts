@@ -1,5 +1,6 @@
 import { calculateTimeSlots } from "../../utils/time";
 import { Service } from "../Service/service.model";
+import { CSlot } from "./slot.interface";
 import { Slot } from "./slot.model";
 
 
@@ -20,9 +21,11 @@ const createSlot = async (serviceId: string, date: string, startTime: string, en
 };
 
 
-//
+//get available slots
 const getAvailableSlots = async (date?: string, serviceId?: string) => {
-  const query: any = {};
+  const query: any = {
+    isBooked: 'available'
+  };
 
   if (date) {
     query.date = date;
@@ -32,12 +35,26 @@ const getAvailableSlots = async (date?: string, serviceId?: string) => {
     query.service = serviceId;
   }
 
-  query.isBooked = 'available';
+  const slots = await Slot.find(query).populate('service');
+  return slots;
+};
+
+
+//get all slots
+const getAllSlots = async () => {
   const slots = await Slot.find().populate('service');
   return slots;
 };
 
+//update service
+const updateSlot = async (id: string, updateData: Partial<CSlot>) => {
+  const result = await Slot.findByIdAndUpdate(id, updateData, {new:true, runValidators: true}).exec();
+  return result;
+};
+
 export const SlotService = {
   createSlot,
-  getAvailableSlots
+  getAvailableSlots,
+  updateSlot,
+  getAllSlots
 };
