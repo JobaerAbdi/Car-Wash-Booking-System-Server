@@ -18,6 +18,6 @@ router.post(
 router.get("/users", AuthValidated(USER_Role.admin), UserControllars.getUserDB);
 
 //updte users
-router.put("/user/:id", AuthValidated(USER_Role.admin), UserControllars.updateUserDB);
+router.put("/user/:id", UserControllars.updateUserDB);
 
 export const UserRoutes = router;

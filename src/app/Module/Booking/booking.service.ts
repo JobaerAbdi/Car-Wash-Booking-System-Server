@@ -28,9 +28,11 @@ const createBooking = async (bookingData: any) => {
     throw new AppError(httpStatus.NOT_FOUND, "Service not found!");
   }
 
-  
   if (service.isDeleted) {
-    throw new AppError(httpStatus.BAD_REQUEST, "Service is deleted. Booking cannot be made.");
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Service is deleted. Booking cannot be made."
+    );
   }
 
   // Verify slot availability
@@ -75,13 +77,42 @@ const getallBooing = async () => {
 };
 
 const getUserBookings = async (userId: string) => {
-  const bookings = await Booking.find({ customer: userId })
+  const query: any = {
+    customer: userId,
+    status: "complete",
+  };
+
+  const bookings = await Booking.find(query)
     .select("-customer")
     .populate("service")
     .populate("slot");
-  console.log(bookings);
-  if (!bookings) {
-    throw new AppError(httpStatus.NOT_FOUND, "No bookings found for this user");
+
+  if (!bookings.length) {
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      "No complete bookings found for this user"
+    );
+  }
+
+  return bookings;
+};
+
+const getUserBookingsPanding = async (userId: string) => {
+  const query: any = {
+    customer: userId,
+    status: "pending",
+  };
+
+  const bookings = await Booking.find(query)
+    .select("-customer")
+    .populate("service")
+    .populate("slot");
+
+  if (!bookings.length) {
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      "No complete bookings found for this user"
+    );
   }
 
   return bookings;
@@ -91,4 +122,5 @@ export const BookingServices = {
   createBooking,
   getallBooing,
   getUserBookings,
+  getUserBookingsPanding,
 };

@@ -21,6 +21,7 @@ export enum CVehicleType {
     vehicleType: CVehicleType;
     vehicleBrand: string;
     vehicleModel: string;
+    status:string;
     manufacturingYear: number;
     registrationPlate: string;
   }

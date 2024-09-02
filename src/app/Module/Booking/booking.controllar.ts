@@ -37,8 +37,20 @@ const userBookingDB = catchAsync(async(req , res)=>{
   });
 });
 
+const userBookingPendingDB = catchAsync(async(req , res)=>{
+  const userData = req.user.userId;
+  const result = await BookingServices.getUserBookingsPanding(userData);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User Pending bookings retrieved successfully",
+    data: result,
+  });
+});
+
 export const BookingControllars = {
   createBookingDB,
   getallBooingDB,
-  userBookingDB
+  userBookingDB,
+  userBookingPendingDB
 };

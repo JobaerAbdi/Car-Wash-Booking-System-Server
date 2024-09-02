@@ -13,6 +13,11 @@ export const CBookingSchema = new Schema<CBooking>(
     },
     vehicleBrand: { type: String, required: true },
     vehicleModel: { type: String, required: true },
+    status: {
+      type: String,
+      enum: ["complete", "pending", "cancel"],
+      default: "pending",
+    },
     manufacturingYear: { type: Number, required: true },
     registrationPlate: { type: String, required: true },
   },

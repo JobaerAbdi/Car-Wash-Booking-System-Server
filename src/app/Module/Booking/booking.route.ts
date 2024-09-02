@@ -9,10 +9,12 @@ import { USER_Role } from '../User/user.consatand';
 const router = Router();
 
 
-router.post('/bookings',  AuthValidated(USER_Role.user), validationRequest(BookingValidation.createBookingValidationSchema),BookingControllars.createBookingDB);
+router.post('/create/bookings',  AuthValidated(USER_Role.user, USER_Role.admin), validationRequest(BookingValidation.createBookingValidationSchema),BookingControllars.createBookingDB);
 
 router.get('/bookings',AuthValidated(USER_Role.admin) ,BookingControllars.getallBooingDB);
 
 router.get('/my-bookings', AuthValidated(USER_Role.user), BookingControllars.userBookingDB);
+
+router.get('/my-pending-bookings', AuthValidated(USER_Role.user), BookingControllars.userBookingPendingDB);
 
 export const BookingRoutes = router;
