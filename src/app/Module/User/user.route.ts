@@ -7,12 +7,17 @@ import { AuthValidated } from "../../middlewares/auth.validation";
 
 const router = express.Router();
 
+//create User
 router.post(
   "/auth/signup",
   validationRequest(UserValidation.createUserValidationSchema),
   UserControllars.createUserDB
 );
 
+//get USer
 router.get("/users", AuthValidated(USER_Role.admin), UserControllars.getUserDB);
+
+//updte users
+router.put("/user/:id", AuthValidated(USER_Role.admin), UserControllars.updateUserDB);
 
 export const UserRoutes = router;

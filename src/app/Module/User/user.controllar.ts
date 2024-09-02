@@ -1,6 +1,7 @@
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import { UserServices } from "./user.service";
+import AppError from "../../Error/AppError";
 
 const createUserDB = catchAsync(async (req, res) => {
   const userData = req.body;
@@ -21,7 +22,23 @@ const getUserDB = catchAsync(async (req, res) => {
   });
 });
 
+const updateUserDB = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new AppError(httpStatus.NOT_FOUND, "User ID not found");
+  }
+  const updateData = req.body;
+  const result = await UserServices.updateUser(id, updateData);
+  res.status(httpStatus.OK).json({
+    success: true,
+    statusCode: 200,
+    message: "Update User successfull",
+    data: result,
+  });
+});
+
 export const UserControllars = {
   createUserDB,
-  getUserDB
+  getUserDB,
+  updateUserDB
 };

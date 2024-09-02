@@ -11,7 +11,13 @@ const getAllUser = async () => {
   return result;
 };
 
+const updateUser = async (id: string, updateData: Partial<CUser>) => {
+  const result = await User.findByIdAndUpdate(id, updateData, {new:true, runValidators: true}).exec();
+  return result;
+};
+
 export const UserServices = {
   createUser,
-  getAllUser
+  getAllUser,
+  updateUser
 };
