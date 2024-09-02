@@ -12,6 +12,16 @@ const createUserDB = catchAsync(async (req, res) => {
   });
 });
 
+const getUserDB = catchAsync(async (req, res) => {
+  const result = await UserServices.getAllUser();
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "all User retrieved successfully!",
+    data: result,
+  });
+});
+
 export const UserControllars = {
   createUserDB,
+  getUserDB
 };

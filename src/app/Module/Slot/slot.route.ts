@@ -15,8 +15,8 @@ router.post(
 
 router.get("/slots/availability", SlotControllars.getAvailableSlotsDB);
 
-router.get("/slots/all", SlotControllars.getAllSlotsDB);
+router.get("/slots/all",   AuthValidated(USER_Role.admin), SlotControllars.getAllSlotsDB);
 
-router.put("/slots/:id", SlotControllars.updateSlotDB);
+router.put("/slots/:id", AuthValidated(USER_Role.admin), SlotControllars.updateSlotDB);
 
 export const SlotRoutes = router;
