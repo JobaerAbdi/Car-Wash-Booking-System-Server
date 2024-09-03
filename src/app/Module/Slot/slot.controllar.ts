@@ -31,6 +31,17 @@ const getAvailableSlotsDB = catchAsync(async (req, res) => {
   });
 });
 
+const getAvailableSlotsByServiceIdDB = catchAsync(async (req, res) => {
+  const { serviceId } = req.query;
+  const result = await SlotService.getAvailableSlotsByServiceId(serviceId as string);
+  res.status(httpStatus.OK).json({
+    success: true,
+    statusCode: 200,
+    message: "Available slots by service ID retrieved successfully",
+    data: result,
+  });
+});
+
 
 const getAllSlotsDB = catchAsync(async (req, res) => {
   const result = await SlotService.getAllSlots();
@@ -62,5 +73,6 @@ export const SlotControllars = {
   createSlotsDB,
   getAvailableSlotsDB,
   getAllSlotsDB,
-  updateSlotDB
+  updateSlotDB,
+  getAvailableSlotsByServiceIdDB
 };

@@ -26,16 +26,20 @@ const getAvailableSlots = async (date?: string, serviceId?: string) => {
   const query: any = {
     isBooked: 'available'
   };
-
   if (date) {
     query.date = date;
   }
-
   if (serviceId) {
     query.service = serviceId;
   }
-
   const slots = await Slot.find(query).populate('service');
+  return slots;
+};
+
+// Service function to get available slots by service ID
+const getAvailableSlotsByServiceId = async (serviceId?: string) => {
+  // Query the database for slots associated with the given service ID
+  const slots = await Slot.find({ service: serviceId, isBooked: "available" }).populate('service');
   return slots;
 };
 
@@ -56,5 +60,6 @@ export const SlotService = {
   createSlot,
   getAvailableSlots,
   updateSlot,
-  getAllSlots
+  getAllSlots,
+  getAvailableSlotsByServiceId
 };
