@@ -40,7 +40,6 @@ const createBooking = async (bookingData: any) => {
   if (!slot || slot.isBooked !== "available") {
     throw new AppError(httpStatus.BAD_REQUEST, "Slot not available!");
   }
-
   // Create booking
   const booking = new Booking({
     customer: customerId,
@@ -52,13 +51,11 @@ const createBooking = async (bookingData: any) => {
     manufacturingYear,
     registrationPlate,
   });
-
   const savedBooking = await booking.save();
 
   // Update slot status
   slot.isBooked = "booked";
   await slot.save();
-
   // Populate booking with relevant data
   await savedBooking.populate("customer");
   await savedBooking.populate("service");
