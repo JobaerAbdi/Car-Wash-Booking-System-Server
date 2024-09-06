@@ -6,6 +6,12 @@ const createReviw = async (ReviwData: CReviw) => {
   return result;
 };
 
+const getReviws = async () => {
+  const result = await Reviw.find();
+  return result;
+};
+
 export const ReviwServices = {
   createReviw,
+  getReviws
 };

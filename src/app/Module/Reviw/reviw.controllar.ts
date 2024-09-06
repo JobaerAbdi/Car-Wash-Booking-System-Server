@@ -12,6 +12,16 @@ const createReviwDB = catchAsync(async (req, res) => {
   });
 });
 
+const getReviwsDB = catchAsync(async (req, res) => {
+  const result = await ReviwServices.getReviws();
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "All Reviw Get Successfully !",
+    data: result,
+  });
+});
+
 export const ReviwControllars = {
   createReviwDB,
+  getReviwsDB,
 };
