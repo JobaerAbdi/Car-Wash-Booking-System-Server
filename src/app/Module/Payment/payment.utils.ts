@@ -8,9 +8,9 @@ export const initialePayment = async (OrderDate: any) => {
     store_id: process.env.STORE_ID,
     signature_key: process.env.SIGNATURE_KEY,
     tran_id: OrderDate.transactionId,
-    success_url: `http://localhost:3000/api/v1/payment/confirmation?
-transactionId=${OrderDate.transactionId}&status=success`,
-    fail_url:  `http://localhost:3000/api/v1/payment/confirmation?&status=Faild`,
+    success_url: `http://localhost:3000/api/confirmation?
+transactionId=${OrderDate.transactionId}&id=${OrderDate.BookinId}&status=success`,
+    fail_url:  `http://localhost:3000/api/confirmation?&status=Faild`,
     cancel_url: "http://localhost:5173/",
     amount: OrderDate.totalPrice,
     currency: "BDT",
@@ -25,6 +25,20 @@ transactionId=${OrderDate.transactionId}&status=success`,
     cus_country: "Bangladesh",
     cus_phone: OrderDate.customerPhone,
     type: "json",
+  });
+  
+  return response.data;
+};
+
+
+export const verifyPayment = async (tnxId: string) => {
+  const response = await axios.get(process.env.PAYMENT_VERIFY_URL!, {
+    params: {
+      store_id: process.env.STORE_ID,
+      signature_key: process.env.SIGNATURE_KEY,
+      type: "json",
+      request_id: tnxId,
+    },
   });
   return response.data;
 };
