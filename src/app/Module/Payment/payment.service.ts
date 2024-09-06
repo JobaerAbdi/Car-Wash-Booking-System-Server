@@ -14,7 +14,6 @@ const initiale = async (BookingInitaleData: any) => {
   };
 
   const paymentSession = await initialePayment(OrderDate);
-  console.log(paymentSession);
   return paymentSession;
 };
 
@@ -31,7 +30,7 @@ const confirmantion = async (transactionId: string, id: string): Promise<string>
     message = "Failed Payment!";
   }
 
-  return message;
+  return `<h1>${message}</h1>`;
 };
 
 
