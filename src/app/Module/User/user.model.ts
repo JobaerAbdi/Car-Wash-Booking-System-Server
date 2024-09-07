@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { CUser } from "./user.interface";
+import { CUser, CUserModel } from "./user.interface";
 import { USER_Role } from "./user.consatand";
 import bcrypt from 'bcrypt';
 import config from "../../config";
@@ -10,7 +10,8 @@ export const CUserSchema: Schema = new Schema({
     password: { type: String, required: true },
     phone: { type: String, required: true },
     role: { type: String, required: true, enum: Object.keys(USER_Role) },
-    address: { type: String, required: true }
+    address: { type: String, required: true },
+    passwordChangedAt: { type: Date } 
   },{
     timestamps:true
   });
@@ -28,5 +29,14 @@ CUserSchema.post("save", function (doc, next) {
   next();
 });
 
+// Static method to check if JWT was issued before password change
+CUserSchema.statics.isJWTIssuedBeforePasswordChange = function (
+  passwordChangedAt: Date,
+  jwtIssuedAt: number
+) {
+  const passwordChangedTime = new Date(passwordChangedAt).getTime() / 1000;
+  return passwordChangedTime > jwtIssuedAt;
+};
 
- export const User =model<CUser>('User', CUserSchema);
+
+export const User = model<CUser, CUserModel>("User", CUserSchema);

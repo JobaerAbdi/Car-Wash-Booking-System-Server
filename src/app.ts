@@ -11,6 +11,7 @@ const app: Application = express();
 // Middleware to parse cookies
 app.use(cookieParser());
 
+
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(bodyParser.json());

@@ -7,10 +7,11 @@ const loginValidatoinSchema = z.object({
   }),
 });
 
+// Validation schema for refresh token
 const refreshTokenValidationSchema = z.object({
   cookies: z.object({
     refreshToken: z.string({
-      required_error: "Refresh token is required!",
+      required_error: "Refresh token is required !",
     }),
   }),
 });
