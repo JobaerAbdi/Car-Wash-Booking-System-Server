@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post('/auth/login',validationRequest(AuthValidation.loginValidatoinSchema), AuthControllers.loginUserDB);
 
-router.post('/auth/refresh-token', validationRequest(AuthValidation.refreshTokenValidationSchema), AuthControllers.refreshTokenDB);
+// router.post('/auth/refresh-token', validationRequest(AuthValidation.refreshTokenValidationSchema), AuthControllers.refreshTokenDB);
 
 export const AuthRoutes = router;
