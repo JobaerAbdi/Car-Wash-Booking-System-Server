@@ -1,4 +1,4 @@
-## 🎉 **Welcome to Car Wash Center..!!**
+## 🎉 **Welcome to Car Wash Server..!!**
 
 A web application for booking car wash services. This system allows users to book slots for various car wash services and manage bookings.
 
@@ -42,6 +42,17 @@ A web application for booking car wash services. This system allows users to boo
 - │   │   └── booking.controller.ts
 - │   │   └── booking.validation.ts
 - │   │   └── booking.route.ts
+- │   ├── Reviw/
+- │   │   └── reviw.interface.ts
+- │   │   └── reviw.model.ts
+- │   │   └── reviw.service.ts
+- │   │   └── reviw.controller.ts
+- │   │   └── reviw.validation.ts
+- │   │   └── reviw.route.ts
+- │   ├── Payment/
+- │   │   └── payment.service.ts
+- │   │   └── payment.controller.ts
+- │   │   └── payment.route.ts
 - ├── routes/
 - │   └── index.ts
 - ├── utils/
@@ -60,7 +71,7 @@ A web application for booking car wash services. This system allows users to boo
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Kamrulthedev/Car-Wash-Booking-System
+    git clone https://github.com/Kamrulthedev/Car-Wash-Booking-System-Server
     ```
 
 2. Install dependencies:
@@ -73,14 +84,14 @@ A web application for booking car wash services. This system allows users to boo
     - Add the following environment variables:
         ```
         PORT=3000
-        MONGO_URI=mongodb://localhost:27017/car-wash-booking-system
+        MONGO_URI=mongodb://localhost:27017/car-wash-booking-system-server
         JWT_SECRET=your_jwt_secret
         and more
         ```
 
 4. Run the application:
     ```bash
-    npm run star:prod
+    npm run star:dev
     ```
 
 ## Usage
@@ -89,6 +100,6 @@ A web application for booking car wash services. This system allows users to boo
 
 To start the application in development mode:
 ```bash
-npm run star:prod
+npm run star:dev
 
 
