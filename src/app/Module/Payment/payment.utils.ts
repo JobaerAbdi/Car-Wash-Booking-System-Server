@@ -11,7 +11,7 @@ export const initialePayment = async (OrderDate: any) => {
     success_url: `https://car-wash-booking-system-server-xi.vercel.app/api/confirmation?
 transactionId=${OrderDate.transactionId}&id=${OrderDate.BookinId}&status=success`,
     fail_url:  `https://car-wash-booking-system-server-xi.vercel.app/api/confirmation?&status=Faild`,
-    cancel_url: "https://car-wash-booking-system-server-xi.vercel.app",
+    cancel_url: "https://car-wash-booking-system-murex.vercel.app/",
     amount: OrderDate.totalPrice,
     currency: "BDT",
     desc: "Merchant Registration Payment",
