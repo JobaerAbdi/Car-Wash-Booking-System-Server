@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://car-wash-booking-system-murex.vercel.app',
+  origin: 'https://car-wash-booking-system-client-beta.vercel.app',
   credentials: true
 }));
 
