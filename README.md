@@ -71,7 +71,7 @@ A web application for booking car wash services. This system allows users to boo
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Kamrulthedev/Car-Wash-Booking-System-Server
+    git clone https://github.com/JobaerAbdi/Car-Wash-Booking-System-Server
     ```
 
 2. Install dependencies:
