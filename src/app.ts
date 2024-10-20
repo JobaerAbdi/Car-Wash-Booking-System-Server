@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://car-wash-booking-system-client-beta.vercel.app',
+  //origin: ["http://localhost:5000", "http://localhost:3000","https://tour-hub-frontend.vercel.app"],
   credentials: true
 }));
 
@@ -26,8 +26,7 @@ app.use("/api", router);
 
 
 app.get("/", (req: Request, res: Response) => {
-  const result = "Hello Car Wash Center !!!";
-  res.send(result);
+  res.send("Welcome this project!!");
 });
 
 

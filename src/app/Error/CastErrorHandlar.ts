@@ -1,9 +1,5 @@
 import mongoose from "mongoose";
 import { CErrorSources, CGenericErrorResponse } from "../Interface/error";
-
-
-
-
 const handlerCastError = (
     err: mongoose.Error.CastError,
   ): CGenericErrorResponse => {
